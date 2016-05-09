@@ -62,7 +62,13 @@ def main():
                 file_path = os.path.join(album_dir, filename)
                 print(file_path)
 
-                shutil.copy(audiofile, file_path)
+                if not (os.path.exists(file_path)):
+                    shutil.copy(audiofile, file_path)
+                else:
+                    file_size_local = os.path.getsize(file_path)
+                    file_size_ipod = os.path.getsize(audiofile)
+                    if file_size_ipod > file_size_local:
+                        shutil.copy(audiofile,file_path)
 
 
 
